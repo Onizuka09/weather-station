@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  
+</head>
+<body onload="javascript:init()">
+<div>
+  <input type="range" min="1" max="10" value="5" id="dataRateSlider" oninput="sendDataRate()" />
+  <label for="dataRateSlider" id="dataRateLabel">Rate: 0.2Hz</label>
+</div>
+<hr />
+<div>
+  <canvas id="line-chart" width="600" height="300"></canvas>
+</div>
+<!-- Adding a websocket to the client (webpage) -->
+<script>
+   
+  var dataPlot, socket ;
+  var maxDataPoints = 20;
+  function removeData(){
+    dataPlot.data.labels.shift();
+    dataPlot.data.datasets[0].data.shift();
+    dataPlot.data.datasets[1].data.shift();
+  }
+  function addData(label, temp,hum) {
+    if(dataPlot.data.labels.length > maxDataPoints) removeData();
+    dataPlot.data.labels.push(label);
+    dataPlot.data.datasets[0].data.push(temp);
+    dataPlot.data.datasets[1].data.push(hum);
+    dataPlot.update();
+  }
+  function init() {
+    socket = io.connect('http://localhost:5000');
+    socket.on('connect', function() {
+        console.log("server connected");
+
+    });
+    //socket.emit("message","hello form webpage");
+    dataPlot = new Chart(document.getElementById("line-chart"), {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          data: [],
+          label: "Temperature (C)",
+          borderColor: "#FF0000",
+          fill: false,
+          size: 25
+        },{
+          data: [],
+          label: "Humidity (%)",
+          borderColor: "#3e95cd",
+          fill: false,
+          size: 25
+        }
+      ]
+      },
+      options:{
+        legend: {
+          display:true,
+          labels:{
+		fontSize: 20,
+  }
+        },
+        scales:{
+          yAxes: [{
+            ticks: {
+                fontSize: 20
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontSize: 20
+            }
+        }]
+        }
+        
+   
+    }
+  });
+ 
+    socket.on('data',function(data){
+      
+        var today = new Date();
+      var t = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var temp=    parseFloat(data["temp"]);//[50,60,70,50,30,20];
+      var hum = parseFloat(data["hum"]);//[20,30,90,80,60,10];// 
+      console.log(temp,hum)
+      addData(t, temp,hum);
+
+
+
+
+    });
+
+
+  }
+  /*function sendDataRate(){
+    var dataRate = document.getElementById("dataRateSlider").value;
+    webSocket.send(dataRate);
+    dataRate = 1.0/dataRate;
+    document.getElementById("dataRateLabel").innerHTML = "Rate: " + dataRate.toFixed(2) + "Hz";
+  }*/
+</script>
+</body>
+</html>

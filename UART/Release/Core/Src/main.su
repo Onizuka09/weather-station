@@ -1,0 +1,10 @@
+../Core/Src/main.c:68:5:_write	12	static,ignoring_inline_asm
+../Core/Src/main.c:78:6:Delay_us	0	static
+../Core/Src/main.c:85:6:Set_Pin_Output	32	static
+../Core/Src/main.c:94:6:Set_Pin_Input	40	static
+../Core/Src/main.c:103:6:dht22_start	16	static
+../Core/Src/main.c:113:9:dht22_begin	16	static
+../Core/Src/main.c:132:9:DHT22_Read	24	static
+../Core/Src/main.c:264:6:SystemClock_Config	88	static,ignoring_inline_asm
+../Core/Src/main.c:158:5:main	64	static,ignoring_inline_asm
+../Core/Src/main.c:425:6:Error_Handler	0	static,ignoring_inline_asm

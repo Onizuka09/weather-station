@@ -1,0 +1,7 @@
+../DHT22Lib/DHT22.c:15:6:Delay_us	16	static
+../DHT22Lib/DHT22.c:23:6:Set_Pin_Output	40	static
+../DHT22Lib/DHT22.c:32:6:Set_Pin_Input	40	static
+../DHT22Lib/DHT22.c:41:6:dht22_start	16	static
+../DHT22Lib/DHT22.c:51:9:dht22_begin	24	static
+../DHT22Lib/DHT22.c:70:16:DHT22_Read_byte	24	static
+../DHT22Lib/DHT22.c:90:6:get_data	40	static

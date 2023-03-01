@@ -22,7 +22,8 @@ The ESP8266 gets the data from ```STM32``` over ```UART```.
 ## 3- Displaying data:
 the server recieves the data and then forword it using ```socketIO``` to a web_page to display the data using ```chartJS``` .
 
-![image](images/pic4.jpg) 
+![image](images/pic4.png) 
+
 # List of materials 
 - STM32 
 - ESP8266 

@@ -7,7 +7,7 @@ sio= SocketIO(app,cors_allowed_origins='*')
 
 
 
-json =  {'name': 'hello ESP8266 !'}
+resp =  {'name': 'hello ESP8266 !'}
 
 @app.route('/')
 def route():
@@ -16,7 +16,7 @@ def route():
 @sio.on('connect')
 def test_connect():
     print("client connected")
-    emit('response', jsont)
+    emit('response', resp)
 
 @sio.on('message')
 def handle_message(data):

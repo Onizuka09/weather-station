@@ -23,11 +23,22 @@ The ESP8266 gets the data from ```STM32``` over ```UART```.
 the server recieves the data and then forword it using ```socketIO``` to a web_page to display the data using ```chartJS``` .
 
 ![image](images/pic4.png) 
-
+![image](images/pic5.png)
 # List of materials 
-- STM32 
+- STM32F401RE NUCLEO  
 - ESP8266 
 - DHT22 sensor
 
 
-     
+# Installation 
+- Clone the repository 
+```bash 
+git clone https://github.com/Onizuka09/weather-station.git
+``` 
+
+- To run the python server you can:
+ 1- Activate the virtual environment (Linux)
+```bash 
+ $source env/bin/activate     
+```    
+ 2- There is a requirements file you can install the python packages manually.     

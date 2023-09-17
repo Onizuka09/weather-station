@@ -1,6 +1,6 @@
 # weather station 
 
-This is a system that takes temperture and humidty readings from a DHT22 sesnor and then sends the data to a web server to diplay it a chart over WiFi.
+This is a system that takes temperture and humidty readings from a DHT22 sesnor and then sends the data  over WiFi to a web server that plots the data into a chart.
 
 the system is consists of 3 phases:
 - Data aquision (STM32). 
